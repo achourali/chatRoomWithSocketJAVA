@@ -1,0 +1,10 @@
+pour lancer le serveur: 
+$ Server numero_port
+
+
+pour lancer le client:
+$ Client server_ip port son_username
+
+
+pour quitter 
+tapez exit 
