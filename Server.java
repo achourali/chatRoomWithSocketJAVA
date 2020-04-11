@@ -16,7 +16,7 @@ public class Server {
         System.out.println("server started : ");
         Scanner sc;
         String ID;
-        
+        String liste_client;
         PrintStream p;
         while (true) {
 
@@ -26,8 +26,15 @@ public class Server {
             ID = sc.nextLine();
 
             if (!IDs.contains(ID)) {
-                IDs.add(ID);
                 p.println("OK");
+                liste_client="";
+                for(int i=0;i<IDs.size();i++){
+                    liste_client=liste_client+" ,"+IDs.elementAt(i);
+                }
+                p.println(liste_client);
+                IDs.add(ID);
+                
+                
                 System.out.println(ID+" connected . ");
 
                 ThreadClient client = new ThreadClient(s, boiteDesMessages,IDs,ID);

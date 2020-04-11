@@ -23,10 +23,13 @@ public class Client {
         
 
         if (peutPasser.contentEquals("OK")) {
+            
+
             ReceiveFromServer receiver = new ReceiveFromServer(s, id);
             ObjectOutputStream printer = new ObjectOutputStream(s.getOutputStream());
-
-            System.out.println("bienvenue au chat , tapez exit pour quitter : ");
+            String liste_client=sc2.nextLine();
+            if (!liste_client.contentEquals("")) liste_client="clients connectés :"+liste_client;
+            System.out.println("bienvenue au chat ,"+liste_client +" . Tapez exit pour quitter : ");
 
             receiver.start();
 
