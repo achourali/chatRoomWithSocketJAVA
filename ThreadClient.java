@@ -8,11 +8,12 @@ public class ThreadClient extends Thread {
     private Vector<Message> v;
     private Vector<String> IDs;
     String mon_ID;
-    public ThreadClient(Socket s, Vector<Message> v,Vector<String> IDs,String ID) {
+
+    public ThreadClient(Socket s, Vector<Message> v, Vector<String> IDs, String ID) {
         this.s = s;
         this.v = v;
-        this.IDs=IDs;
-        this.mon_ID=ID;
+        this.IDs = IDs;
+        this.mon_ID = ID;
     }
 
     public void run() {
@@ -27,30 +28,34 @@ public class ThreadClient extends Thread {
 
         SendToClient sender = new SendToClient(s, v);
         sender.start();
-
+        Message msg=new Message();
         try {
 
             ObjectInputStream sc = new ObjectInputStream(s.getInputStream());
 
             while (true) {
 
-                Message msg = (Message) sc.readObject();
+                msg = (Message) sc.readObject();
 
                 if (msg.data.contentEquals("exit")) {
+
                     sender.status = 0;
                     break;
                 } else {
                     v.add(msg);
-                    
+
                 }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("client "+mon_ID+" out.");
+        msg.data = mon_ID + " DISCONNECTED.";
+        msg.id = "notification";
+        v.add(msg);
+        System.out.println("client " + mon_ID + " out.");
         IDs.remove(mon_ID);
-        
+
     }
 
 }

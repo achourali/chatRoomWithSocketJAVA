@@ -28,8 +28,8 @@ public class Client {
             ReceiveFromServer receiver = new ReceiveFromServer(s, id);
             ObjectOutputStream printer = new ObjectOutputStream(s.getOutputStream());
             String liste_client=sc2.nextLine();
-            if (!liste_client.contentEquals("")) liste_client="clients connectés :"+liste_client;
-            System.out.println("bienvenue au chat ,"+liste_client +" . Tapez exit pour quitter : ");
+            if (!liste_client.contentEquals("")) liste_client="CONNECTED CLIENTS :"+liste_client;
+            System.out.println("welcome to chat ,"+liste_client +" .write exit and press enter to quit : ");
 
             receiver.start();
 

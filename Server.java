@@ -18,6 +18,7 @@ public class Server {
         String ID;
         String liste_client;
         PrintStream p;
+        Message msg=new Message();
         while (true) {
 
             Socket s = s1.accept();
@@ -25,13 +26,18 @@ public class Server {
             p=new PrintStream(s.getOutputStream());
             ID = sc.nextLine();
 
-            if (!IDs.contains(ID)) {
+            if (!IDs.contains(ID) && !ID.contentEquals("notification")) {
                 p.println("OK");
                 liste_client="";
                 for(int i=0;i<IDs.size();i++){
                     liste_client=liste_client+" ,"+IDs.elementAt(i);
                 }
+
+
                 p.println(liste_client);
+                msg=new Message("notification",ID+" CONNECTED.");
+                
+                boiteDesMessages.add(msg);
                 IDs.add(ID);
                 
                 
