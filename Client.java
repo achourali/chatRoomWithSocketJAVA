@@ -7,9 +7,10 @@ public class Client {
 
     public static void main(String[] args) throws Exception {
 
-        String id = args[2];
-        Socket s = new Socket(args[0], Integer.parseInt(args[1]));
+        String id = "ia";
+        Socket s = new Socket("localhost", 1234);
         Scanner sc = new Scanner(System.in);
+        
 
 
 
@@ -25,29 +26,17 @@ public class Client {
         if (peutPasser.contentEquals("OK")) {
             
 
-            ReceiveFromServer receiver = new ReceiveFromServer(s, id);
-            ObjectOutputStream printer = new ObjectOutputStream(s.getOutputStream());
-            String liste_client=sc2.nextLine();
-            if (!liste_client.contentEquals("")) liste_client="CONNECTED CLIENTS :"+liste_client;
-            System.out.println("welcome to chat ,"+liste_client +" .write exit and press enter to quit : ");
+            
+            
+            String listeClient=sc2.nextLine();
+            if (!listeClient.contentEquals("")) listeClient="CONNECTED CLIENTS :"+listeClient;
+            
 
-            receiver.start();
-
-            String data = "";
-
-            Message msg = new Message();
-
-            while (!data.contentEquals("exit")) {
-
-                data = sc.nextLine();
-
-                msg = new Message(id, data);
-
-                printer.writeObject(msg);
-
-            }
-
-            receiver.status = 0;
+            Window window=new Window(s,id,"welcome to chat ,"+listeClient +" .write exit and press enter to quit : ");
+            window.run();
+            
+            
+            
         }else System.out.println("ID existe deja !!!");
 
         sc.close();

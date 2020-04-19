@@ -10,7 +10,7 @@ public class Server {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        ServerSocket s1 = new ServerSocket(Integer.parseInt(args[0]));
+        ServerSocket s1 = new ServerSocket(1234);
         Vector<Message> boiteDesMessages = new Vector<Message>();
         Vector<String> IDs = new Vector<String>();
         System.out.println("server started : ");
@@ -29,7 +29,8 @@ public class Server {
             if (!IDs.contains(ID) && !ID.contentEquals("notification")) {
                 p.println("OK");
                 liste_client="";
-                for(int i=0;i<IDs.size();i++){
+                if (!IDs.isEmpty()) liste_client=IDs.elementAt(0);
+                for(int i=1;i<IDs.size();i++){
                     liste_client=liste_client+" ,"+IDs.elementAt(i);
                 }
 
