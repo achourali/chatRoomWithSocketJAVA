@@ -7,8 +7,8 @@ public class Client {
 
     public static void main(String[] args) throws Exception {
 
-        String id = "ia";
-        Socket s = new Socket("localhost", 1234);
+        String id = args[2];
+        Socket s = new Socket(args[0],Integer.parseInt(args[1]));
         Scanner sc = new Scanner(System.in);
         
 

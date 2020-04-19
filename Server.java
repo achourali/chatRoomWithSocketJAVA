@@ -10,7 +10,7 @@ public class Server {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        ServerSocket s1 = new ServerSocket(1234);
+        ServerSocket s1 = new ServerSocket(Integer.parseInt(args[0]));
         Vector<Message> boiteDesMessages = new Vector<Message>();
         Vector<String> IDs = new Vector<String>();
         System.out.println("server started : ");
