@@ -19,7 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.text.DefaultStyledDocument;
 
-import javafx.scene.control.ScrollBar;
+// import javafx.scene.control.ScrollBar;
 
 import javax.swing.text.*;
 
@@ -94,7 +94,7 @@ class Window implements ActionListener, WindowListener, KeyListener {
         printer = new ObjectOutputStream(s.getOutputStream());
 
         try {
-            Font f;
+            
             ObjectInputStream sc = new ObjectInputStream(s.getInputStream());
             Message msg;
             StyleContext context = new StyleContext();
@@ -103,21 +103,20 @@ class Window implements ActionListener, WindowListener, KeyListener {
             Color c2;
             while (status != 0) {
                 msg = (Message) sc.readObject();
-                c1 = Color.BLACK;
-                c2 = Color.BLUE;
 
                 if (msg.id.contentEquals("notification")) {
                     c1 = Color.RED;
                     c2 = Color.RED;
 
-                }
-                if (msg.id.contentEquals(id)) {
-                    c1 = new Color(0,180,0,255);
-                    c2 = new Color(0,180,0,255);
-                    
-                    msg.id="YOU";
-                }
+                } else if (msg.id.contentEquals(id)) {
+                    c1 = new Color(0, 180, 0, 255);
+                    c2 = new Color(0, 180, 0, 255);
 
+                    msg.id = "YOU";
+                } else {
+                    c1 = Color.BLACK;
+                    c2 = Color.BLUE;
+                }
 
                 StyleConstants.setForeground(style, c1);
                 document.insertString(document.getLength(), "\n" + msg.id + ":\n", style);
@@ -182,7 +181,6 @@ class Window implements ActionListener, WindowListener, KeyListener {
 
         if ((pressedKeys.size() > 0) && (search(pressedKeys, e.getKeyCode()) != -1))
             pressedKeys.removeElementAt(search(pressedKeys, e.getKeyCode()));
-        System.out.println("press total " + pressedKeys.size());
 
     }
 
@@ -207,18 +205,16 @@ class Window implements ActionListener, WindowListener, KeyListener {
             pressedKeys.add(e.getKeyCode());
 
         }
-        System.out.println(e.getKeyCode());
+
         if (pressedKeys.size() == 2) {
 
             if ((e.getKeyCode() == 10) && (((int) pressedKeys.elementAt(pressedKeys.size() - 2)) == 16)) {
 
                 boiteEcriture.setText(boiteEcriture.getText() + "\n");
-                System.out.println("new line");
 
             }
 
         }
-        System.out.println("press total " + pressedKeys.size());
 
         // TODO Auto-generated method stub
 

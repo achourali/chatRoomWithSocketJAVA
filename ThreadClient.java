@@ -43,6 +43,7 @@ public class ThreadClient extends Thread {
                     break;
                 } else {
                     v.add(msg);
+                    System.out.println(msg.id+" : "+msg.data);
 
                 }
             }

@@ -44,10 +44,11 @@ public class Server {
                 
                 System.out.println(ID+" connected . ");
 
+                Thread.sleep(50);
                 ThreadClient client = new ThreadClient(s, boiteDesMessages,IDs,ID);
 
                 client.start();
-                Thread.sleep(200);
+                
             }else p.println("ID existe deja !!!");
 
         }
