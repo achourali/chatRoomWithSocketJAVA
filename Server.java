@@ -44,7 +44,7 @@ public class Server {
                 
                 System.out.println(ID+" connected . ");
 
-                Thread.sleep(50);
+                Thread.sleep(500);
                 ThreadClient client = new ThreadClient(s, boiteDesMessages,IDs,ID);
 
                 client.start();

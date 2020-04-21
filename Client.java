@@ -32,7 +32,7 @@ public class Client {
             if (!listeClient.contentEquals("")) listeClient="CONNECTED CLIENTS :"+listeClient;
             
 
-            Thread.sleep(50);
+            Thread.sleep(500);
             Window window=new Window(s,id,"welcome to chat ,"+listeClient +" .write exit and press enter to quit : ");
             window.run();
             
